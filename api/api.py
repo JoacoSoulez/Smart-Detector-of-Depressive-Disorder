@@ -3,12 +3,17 @@ from fastapi.middleware.cors import CORSMiddleware
 
 
 from MHFA.preprocessing import clean_text, vectorize
+import nltk
+nltk.download('all')
+nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('wordnet')
 
 import numpy
 import pandas as pd
 import joblib
 
-
+import uvicorn
 
 app = FastAPI()
 
