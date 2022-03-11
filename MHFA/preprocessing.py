@@ -6,7 +6,7 @@ import string
 import nltk
 from nltk.stem import WordNetLemmatizer
 from preprocessor import clean
-
+import joblib
 
 def expand_contractions(text):
     """ Replace contractions in the english language by the complete phrase"""
@@ -257,6 +257,9 @@ def remove_context_symbol(text):
 
 def clean_text(texts_sequence):
     """ Return a preprocessed sequence of texts """
+    print('cleaning')
+
+
     return texts_sequence.apply(
         to_lower).apply(
         expand_contractions).apply(
@@ -268,6 +271,19 @@ def clean_text(texts_sequence):
         remove_numbers).apply(
         remove_stop_words_and_lemmatize).apply(
         remove_consecutive_duplicates)
+
+
+def vectorize(X):
+
+    tfid3 = joblib.load('tfid3_vectorizer.sav')
+
+
+    vector = tfid3.transform(X)
+
+
+    return vector
+
+
 
 
 if __name__ == "__main__":
