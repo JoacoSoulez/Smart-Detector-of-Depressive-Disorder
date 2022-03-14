@@ -39,3 +39,6 @@ uvicorn
 #fastapi
 
 fastapi
+
+#streamlit
+streamlit
