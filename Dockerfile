@@ -7,4 +7,7 @@ COPY requirements.txt /requirements.txt
 
 RUN pip install -r requirements.txt
 
+RUN python -m nltk.downloader stopwords punkt wordnet omw-1.4
+
+
 CMD uvicorn api.api:app --host 0.0.0.0 --port $PORT

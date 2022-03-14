@@ -4,10 +4,12 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from MHFA.preprocessing import clean_text, vectorize
 import nltk
-nltk.download('all')
+#nltk.download('all')
 nltk.download('stopwords')
 nltk.download('punkt')
 nltk.download('wordnet')
+nltk.download('omw-1.4')
+
 
 import numpy
 import pandas as pd

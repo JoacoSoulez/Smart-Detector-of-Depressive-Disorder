@@ -8,9 +8,12 @@ from nltk.stem import WordNetLemmatizer
 from preprocessor import clean
 import joblib
 import nltk
-nltk.download('punkt')
 nltk.download('stopwords')
+nltk.download('punkt')
 nltk.download('wordnet')
+nltk.download('omw-1.4')
+
+
 
 
 def expand_contractions(text):
