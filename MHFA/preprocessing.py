@@ -7,6 +7,14 @@ import nltk
 from nltk.stem import WordNetLemmatizer
 from preprocessor import clean
 import joblib
+import nltk
+nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('omw-1.4')
+
+
+
 
 def expand_contractions(text):
     """ Replace contractions in the english language by the complete phrase"""
@@ -211,6 +219,8 @@ def remove_punctuation(text):
 
 def remove_stop_words(text):
     """ Remove Stop words from text """
+
+
     stopwords = nltk.corpus.stopwords.words('english')
     stopwords.append('https')
     stopwords.append('com')

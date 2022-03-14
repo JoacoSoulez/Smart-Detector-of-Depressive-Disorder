@@ -31,3 +31,11 @@ termcolor
 # Specific modules for preprocessing
 nltk>=3.6.7
 tweet-preprocessor>=0.6.0
+
+#uvicorn
+
+uvicorn
+
+#fastapi
+
+fastapi
