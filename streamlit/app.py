@@ -1,30 +1,35 @@
 import streamlit as st
 import requests
+from PIL import Image
+
+image = Image.open('streamlit/icon-removebg-preview.png')
 
 url = 'https://depressiondetection-rdm72uggnq-ew.a.run.app/predict'
-
-st.markdown('<style>body{background-color: Blue;}</style>',unsafe_allow_html=True)
 
 st.markdown("""
 <style>
 .title {
-    font-size:50px !important;
+    font-family:Verdana;
+    font-size:40px !important;
+    text-align: center;
 }
 .sub-title {
     font-size:20px !important;
+    text-align: center;
 }
 </style>
 """, unsafe_allow_html=True)
 
+st.sidebar.image(image)
 st.sidebar.markdown('<p class="title"> Mental Health First Aid', unsafe_allow_html=True)
-st.sidebar.markdown('<p class="sub-title"> Sentiment Analyse posts in social media', unsafe_allow_html=True)
+st.sidebar.markdown('<p class="sub-title"> Sentiment analysis of social media posts', unsafe_allow_html=True)
 
 
 col1, col2 = st.columns([10,2])
 
 with col1:
 
-    text = st.text_input("")
+    text = st.text_area("")
     #st.write(type(text))
 
 with col2:
