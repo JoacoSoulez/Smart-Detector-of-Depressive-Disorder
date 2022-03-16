@@ -42,3 +42,4 @@ fastapi
 
 #streamlit
 streamlit
+streamlit_option_menu
