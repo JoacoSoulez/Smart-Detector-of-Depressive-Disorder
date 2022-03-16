@@ -24,10 +24,21 @@ s3fs
 
 # utilities
 six>=1.14
-joblib
+joblib>=1.0.1
 memoized-property
 termcolor
 
 # Specific modules for preprocessing
 nltk>=3.6.7
 tweet-preprocessor>=0.6.0
+
+#uvicorn
+
+uvicorn
+
+#fastapi
+
+fastapi
+
+#streamlit
+streamlit

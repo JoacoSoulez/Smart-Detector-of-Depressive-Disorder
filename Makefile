@@ -53,3 +53,23 @@ pypi_test:
 
 pypi:
 	@twine upload dist/* -u $(PYPI_USERNAME)
+
+
+#run api
+
+run_api:
+	uvicorn api.api:app --reload  # load web server with code autoreload
+
+# ----------------------------------
+#               FRONT END
+# ----------------------------------
+
+streamlit:
+	-@streamlit run streamlit/app.py
+
+heroku_login:
+	-@heroku login
+
+deploy_heroku:
+	-@git push heroku master
+	-@heroku ps:scale web=1

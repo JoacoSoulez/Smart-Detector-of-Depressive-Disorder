@@ -5,6 +5,8 @@ from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import classification_report
+import joblib
+from termcolor import colored
 
 
 class Bayes():
@@ -34,6 +36,10 @@ class Bayes():
         y_pred = self.pipeline.predict(X_test)
         print(classification_report(y_test, y_pred))
 
+    def save_model_locally(self):
+        """ Save model into a .joblib format """
+        joblib.dump(self.pipeline, 'model.joblib')
+        print(colored("model.joblib saved locally", "green"))
 
 
 if __name__ == "__main__":
@@ -50,3 +56,4 @@ if __name__ == "__main__":
     # Set the pipeline and fit the model
     bayes_model.run()
     bayes_model.evaluate(X_test, y_test)
+    bayes_model.save_model_locally()
