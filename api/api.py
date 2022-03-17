@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 
-from MHFA.preprocessing_willyedit import clean_text, embed_sentence,embedding
+from MHFA.preprocessing_willyedit import clean_text
 import nltk
 #nltk.download('all')
 nltk.download('stopwords')
@@ -18,7 +18,7 @@ import joblib
 import uvicorn
 
 from nltk.tokenize import word_tokenize
-from gensim.models import Word2Vec
+#from gensim.models import Word2Vec
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 
@@ -55,7 +55,7 @@ def predict(text):
     word_count = word_tokenize(str(clean[0]))
 
 
-    if len(word_count) > 50:
+    if len(word_count) > 100:
 
         print('bringing deeplearning model')
         model = joblib.load('transcripciones_finalizado_model.joblib')
@@ -87,7 +87,7 @@ def predict(text):
 
                 }
 
-    if len(word_count) < 50:
+    else:
 
         print('predicting Naive Bayes on vector')
         depressed= naive_bayes.predict(clean)[0]

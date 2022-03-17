@@ -3,6 +3,8 @@ FROM python:3.8.6-buster
 COPY api /api
 COPY MHFA /MHFA
 COPY model.joblib /model.joblib
+COPY tokenizer_transcripciones.joblib /tokenizer_transcripciones.joblib
+COPY transcripciones_finalizado_model.joblib /transcripciones_finalizado_model.joblib
 COPY requirements.txt /requirements.txt
 
 RUN pip install -r requirements.txt
