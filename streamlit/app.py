@@ -94,7 +94,7 @@ if selected == 'Statistics':
 
     st.markdown(
         """
-        - References
+        - Sources:
             - WHO: https://www.who.int/news-room/fact-sheets/detail/depression\n
             - Our World in Data: https://ourworldindata.org/
         """
