@@ -40,10 +40,9 @@ def index():
 @app.get("/predict")
 def predict(text):
     print('bringing vectorizer')
-    vectorizer = joblib.load('word2vec_with_tweets3.sav')
+    vectorizer = joblib.load('tokenizer_transcripciones.joblib')
 
-    print('bringing deeplearning model')
-    model = joblib.load('transcripciones_finalizado_model.joblib')
+
 
     print('bringing naive bayes model')
     naive_bayes = joblib.load('model.joblib')
@@ -52,30 +51,35 @@ def predict(text):
     print('cleaning text')
     clean = list(clean_text(pd.Series(text)))
 
-    print('tokenizing text')
-    X_pred = word_tokenize(str(clean[0]))
+    print('counting words')
+    word_count = word_tokenize(str(clean[0]))
 
-    if len(X_pred) > 50:
 
-        print('embedding clean text')
+    if len(word_count) > 50:
+
+        print('bringing deeplearning model')
+        model = joblib.load('transcripciones_finalizado_model.joblib')
+
+        print('tokenizing clean text')
         #X_pred = embedding(vectorizer, X_pred)
+        X_pred =  vectorizer.texts_to_sequences(clean)
 
-        X_pred = tokenizer.texts_to_sequences(clean)
+
 
         print('padding data with length hardcoded')
-        X_pred = pad_sequences(X, maxlen = 1348,value=-1000, dtype='float64')
+        X_pred = pad_sequences(X_pred, maxlen = 1348,value=-1000, dtype='float64')
 
 
         print('reshaping data')
-        X = np.reshape(X, (X.shape[0], 1, X.shape[1]))
+        X_pred = np.reshape(X_pred, (X_pred.shape[0], 1, X_pred.shape[1]))
 
-        vocab_size = len(tokenizer.word_index) + 1
+        vocab_size = len(vectorizer.word_index) + 1
         print("Total words", vocab_size)
 
 
 
         print('predicting deep learning on vector')
-        depressed= model.predict(X_test_pad)[0]
+        depressed= model.predict(X_pred)[0]
         #probability = model.predict_proba(X_test_pad)[0][1]
         print('returning dict')
         return {'depressed': int(depressed),
@@ -83,7 +87,7 @@ def predict(text):
 
                 }
 
-    if len(X_pred) < 50:
+    if len(word_count) < 50:
 
         print('predicting Naive Bayes on vector')
         depressed= naive_bayes.predict(clean)[0]
