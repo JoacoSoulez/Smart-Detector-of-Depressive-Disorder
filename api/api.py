@@ -43,7 +43,7 @@ def predict(text):
     vectorizer = joblib.load('word2vec_with_tweets3.sav')
 
     print('bringing deeplearning model')
-    model = joblib.load('rnn_with_tweets3.sav')
+    model = joblib.load('transcripciones_finalizado_model.joblib')
 
     print('bringing naive bayes model')
     naive_bayes = joblib.load('model.joblib')
@@ -58,10 +58,20 @@ def predict(text):
     if len(X_pred) > 50:
 
         print('embedding clean text')
-        X_pred = embedding(vectorizer, X_pred)
+        #X_pred = embedding(vectorizer, X_pred)
+
+        X_pred = tokenizer.texts_to_sequences(clean)
 
         print('padding data with length hardcoded')
-        X_test_pad = pad_sequences(X_pred, dtype='float', padding='post', maxlen = 200 , truncating = 'pre')
+        X_pred = pad_sequences(X, maxlen = 1348,value=-1000, dtype='float64')
+
+
+        print('reshaping data')
+        X = np.reshape(X, (X.shape[0], 1, X.shape[1]))
+
+        vocab_size = len(tokenizer.word_index) + 1
+        print("Total words", vocab_size)
+
 
 
         print('predicting deep learning on vector')
@@ -69,7 +79,7 @@ def predict(text):
         #probability = model.predict_proba(X_test_pad)[0][1]
         print('returning dict')
         return {'depressed': int(depressed),
-                'probability of depression': 'float(probability)'
+                'warning of text length': 'your text is long: neural network has made an evaluation instead'
 
                 }
 
