@@ -23,8 +23,8 @@ class Bayes():
     def set_pipeline(self):
         """ Defines the pipeline as a class atribute """
         self.pipeline = Pipeline([
-                        ('tfidf', TfidfVectorizer()),
-                        ('nb', MultinomialNB())
+                        ('tfidf', TfidfVectorizer(ngram_range=(1,1))),
+                        ('nb', MultinomialNB(alpha=1))
                             ])
 
     def run(self):
@@ -44,12 +44,12 @@ class Bayes():
 
 if __name__ == "__main__":
     # Get the data
-    data = get_tweets_and_reddit()
-    # Clean the data
-    data.loc[:,'text'] = clean_text(data['text'])
+    df = get_tweets_and_reddit()
+    # Clean data
+    df['text'] = clean_text(df['text'])
     # Holdout
-    X = data['text'].values
-    y= data['label'].values
+    X = df['text'].values
+    y= df['label'].values
     X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.3)
     # Instanciate the model
     bayes_model = Bayes(X=X_train, y=y_train)

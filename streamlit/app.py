@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit.components.v1 as components
 from streamlit_option_menu import option_menu
 
 import requests
@@ -15,6 +14,10 @@ st.set_page_config(
 image = Image.open('streamlit/icon-removebg-preview.png')
 
 url = 'https://depressiondetection-rdm72uggnq-ew.a.run.app/predict'
+
+st.sidebar.image(image)
+st.sidebar.markdown('<p class="title"> Mental Health First Aid', unsafe_allow_html=True)
+st.sidebar.markdown('<p class="sub-title"> Text based detector of depressive disorders', unsafe_allow_html=True)
 
 st.markdown("""
 <style>
@@ -39,18 +42,15 @@ st.markdown("""
 
 with st.container():
     selected = option_menu("Main Menu", ["App", 'Statistics'],
-        icons=['app', 'clipboard-data'], menu_icon="cast", default_index=1,
+        icons=['app', 'clipboard-data'], menu_icon="cast", default_index=0,
         orientation="horizontal",
         styles={
-        "container": {"padding": "0!important", "background-color": "#fafafa"},
-        "icon": {"color": "black", "font-size": "25px"},
+        "container": {"padding": "0!important"},
+        "icon": {"font-size": "25px"},
         "nav-link": {"font-size": "25px", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},
         "nav-link-selected": {"background-color": "#ede868"},
     })
 
-st.sidebar.image(image)
-st.sidebar.markdown('<p class="title"> Mental Health First Aid', unsafe_allow_html=True)
-st.sidebar.markdown('<p class="sub-title"> Sentiment analysis of social media posts', unsafe_allow_html=True)
 
 if selected == 'Statistics':
 
@@ -92,8 +92,17 @@ if selected == 'Statistics':
         width=900,
         height=700)
 
+    st.markdown(
+        """
+        - References
+            - WHO: https://www.who.int/news-room/fact-sheets/detail/depression\n
+            - Our World in Data: https://ourworldindata.org/
+        """
+    )
 
 else:
+
+    st.info("Use this tool to get the sentiment score of any text sequence")
 
 
     col1, col2 = st.columns([10,2])
@@ -119,11 +128,20 @@ else:
         if response.status_code == 200:
             proba = response.json()['probability of depression']
             if proba >= 0.5:
-                st.write("Depressed")
-                st.write('Probability of having depression: ', f'{proba:.0%}')
+                #st.write("Depressed")
+                #st.write('Probability of having depression: ', f'{proba:.0%}')
+                st.warning("""
+                        This text might indicate that you're going through a deppresive episode. Don't worry, try logging out of social media for a while. If you need help, call:\n
+                        From Mexico - IMSS: 800-2222-668 Option 4\n
+                        From Spain - Psicólogos sin fronteras: 960450230\n
+                        From Argentina: 0800-222-5462\n
+                        """
+                        )
+                st.write("We also recommend you check out this [quick evaluation](https://www.psychologytoday.com/us/tests/health/mental-health-assessment)")
             else:
-                st.write("Not Depressed")
-                st.write('Probability of having depression: ', f'{proba:.0%}')
+                #st.write("Not Depressed")
+                #st.write('Probability of having depression: ', f'{proba:.0%}')
+                st.success("This text don't show any signs of depression.")
         else:
             st.write("Failed conection with the API")
 
