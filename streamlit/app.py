@@ -130,18 +130,29 @@ else:
             if proba >= 0.5:
                 #st.write("Depressed")
                 #st.write('Probability of having depression: ', f'{proba:.0%}')
-                st.warning("""
-                        This text might indicate that you're going through a deppresive episode. Don't worry, try logging out of social media for a while. If you need help, call:\n
-                        From Mexico - IMSS: 800-2222-668 Option 4\n
-                        From Spain - Psicólogos sin fronteras: 960450230\n
-                        From Argentina: 0800-222-5462\n
-                        """
-                        )
+                #st.warning
+                if len(text.split()) < 100:
+                    st.warning("""
+                            This text might indicate that you're going through a deppresive episode. Don't worry, try logging out of social media for a while. If you need help, call:\n
+                            From Mexico - IMSS: 800-2222-668 Option 4\n
+                            From Spain - Psicólogos sin fronteras: 960450230\n
+                            From Argentina: 0800-222-5462\n
+                            """
+                            )
+                else:
+                    st.error("""
+                            This text shows signs that you're going through a deppresive episode. Don't worry, try logging out of social media for a while. If you need help, call:\n
+                            From Mexico - IMSS: 800-2222-668 Option 4\n
+                            From Spain - Psicólogos sin fronteras: 960450230\n
+                            From Argentina: 0800-222-5462\n
+                            """
+                            )
+
                 st.write("We also recommend you check out this [quick evaluation](https://www.psychologytoday.com/us/tests/health/mental-health-assessment)")
             else:
                 #st.write("Not Depressed")
                 #st.write('Probability of having depression: ', f'{proba:.0%}')
-                st.success("This text don't show any signs of depression.")
+                st.success("This text doesn't show any signs of depression.")
         else:
             st.write("Failed conection with the API")
 
