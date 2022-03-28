@@ -1,13 +1,6 @@
-# Data analysis
-- Document here the project: MHFA
-- Description: Project Description
-- Data Source:
-- Type of analysis:
-
-Please document the project the better you can.
 # Mental Health First Aid
 
-Intelligent depression detector
+An Intelligent depression detector
 
 
 ## Motivation
@@ -25,8 +18,6 @@ On the other hand, we have made a neural network that we trained with a database
 
 
 ## Repository overview
-
-Provide an overview of the directory structure and files, for example:
 
 ├── Code
 │   ├── Depression Detection via SocialMedia
