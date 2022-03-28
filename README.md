@@ -17,51 +17,6 @@ Then, we also used a reddit database of posts in a subforum where people with de
 On the other hand, we have made a neural network that we trained with a database (Avec2017) of transcripts of therapy sessions of diagnosed people and people without depression. I am currently working on incorporating audio.
 
 
-## Repository overview
-
-├── Code
-│   ├── Depression Detection via SocialMedia
-│   │   ├── Clean_Tweets_preprocessing.ipynb
-│   │   ├── data.ipynb
-│   │   └── naive_bayes_basemodel.ipynb
-│   ├── Depression Detection via Therapy
-│   │   ├── Audio
-│   │   ├── Text
-│   │   │   └── Depresion_Modelo_RNN.ipynb
-│   │   └── Text and Audio
-│   └── naive_bayes.ipynb
-├── Dockerfile
-├── Draft_notebooks
-├── MANIFEST.in
-├── MHFA
-│   ├── __init__.py
-│   ├── bayes.py
-│   ├── data
-│   ├── data.py
-│   └── preprocessing.py
-├── Makefile
-├── Procfile
-├── README.md
-├── api
-│   ├── __init__.py
-│   └── api.py
-├── model.joblib
-├── raw_data
-├── requirements
-├── requirements.txt
-├── scripts
-│   └── MHFA-run
-├── setup.py
-├── setup.sh
-├── streamlit
-│   ├── 0-4495_mental-health-icon-png-mental-health-icon-transparent.png:Zone.Identifier
-│   ├── app.py
-│   ├── icon-removebg-preview.png
-│   ├── icon-removebg-preview.png:Zone.Identifier
-│   └── icon.png
-└── tests
-
-
 ## More resources
 
 I am currently testing a RandomForest model and an SVC model, and will try a neural network soon.
