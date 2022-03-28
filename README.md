@@ -5,70 +5,76 @@
 - Type of analysis:
 
 Please document the project the better you can.
+# Mental Health First Aid
 
-# Startup the project
+Intelligent depression detector
 
-The initial setup.
 
-Create virtualenv and install the project:
-```bash
-sudo apt-get install virtualenv python-pip python-dev
-deactivate; virtualenv ~/venv ; source ~/venv/bin/activate ;\
-    pip install pip -U; pip install -r requirements.txt
-```
+## Motivation
 
-Unittest test:
-```bash
-make clean install test
-```
+In the world there are more than 280 million people diagnosed with depression. If you add them all together, it would be the fourth most populated country in the world. Today, access to quality mental health diagnosis and follow-up is taboo and difficult to access. The idea is to be able to create a therapeutic assistant that not only detects depression, but also supports the process of improvement.
 
-Check for MHFA in gitlab.com/{group}.
-If your project is not set please add it:
 
-- Create a new project on `gitlab.com/{group}/MHFA`
-- Then populate it:
+## Method and results
 
-```bash
-##   e.g. if group is "{group}" and project_name is "MHFA"
-git remote add origin git@github.com:{group}/MHFA.git
-git push -u origin master
-git push -u origin --tags
-```
+In order to achieve this, and following the line of several researchers, we have used a twitter database with (2345 tweets) information of people who have a tendency to suffer from this disease, and contrasted it with a selection of positive tweets extracted from a twitter database with more than 1.6 million tweets analyzed according to their sentiment (positive negative).
+Then, we also used a reddit database of posts in a subforum where people with depression write.
 
-Functionnal test with a script:
 
-```bash
-cd
-mkdir tmp
-cd tmp
-MHFA-run
-```
+On the other hand, we have made a neural network that we trained with a database (Avec2017) of transcripts of therapy sessions of diagnosed people and people without depression. I am currently working on incorporating audio.
 
-# Install
 
-Go to `https://github.com/{group}/MHFA` to see the project, manage issues,
-setup you ssh public key, ...
+## Repository overview
 
-Create a python3 virtualenv and activate it:
+Provide an overview of the directory structure and files, for example:
 
-```bash
-sudo apt-get install virtualenv python-pip python-dev
-deactivate; virtualenv -ppython3 ~/venv ; source ~/venv/bin/activate
-```
+├── Code
+│   ├── Depression Detection via SocialMedia
+│   │   ├── Clean_Tweets_preprocessing.ipynb
+│   │   ├── data.ipynb
+│   │   └── naive_bayes_basemodel.ipynb
+│   ├── Depression Detection via Therapy
+│   │   ├── Audio
+│   │   ├── Text
+│   │   │   └── Depresion_Modelo_RNN.ipynb
+│   │   └── Text and Audio
+│   └── naive_bayes.ipynb
+├── Dockerfile
+├── Draft_notebooks
+├── MANIFEST.in
+├── MHFA
+│   ├── __init__.py
+│   ├── bayes.py
+│   ├── data
+│   ├── data.py
+│   └── preprocessing.py
+├── Makefile
+├── Procfile
+├── README.md
+├── api
+│   ├── __init__.py
+│   └── api.py
+├── model.joblib
+├── raw_data
+├── requirements
+├── requirements.txt
+├── scripts
+│   └── MHFA-run
+├── setup.py
+├── setup.sh
+├── streamlit
+│   ├── 0-4495_mental-health-icon-png-mental-health-icon-transparent.png:Zone.Identifier
+│   ├── app.py
+│   ├── icon-removebg-preview.png
+│   ├── icon-removebg-preview.png:Zone.Identifier
+│   └── icon.png
+└── tests
 
-Clone the project and install it:
 
-```bash
-git clone git@github.com:{group}/MHFA.git
-cd MHFA
-pip install -r requirements.txt
-make clean install test                # install and test
-```
-Functionnal test with a script:
+## More resources
 
-```bash
-cd
-mkdir tmp
-cd tmp
-MHFA-run
-```
+I am currently testing a RandomForest model and an SVC model, and will try a neural network soon.
+
+## About
+
+This project was done for the final project of Le Wagon's Data Science bootcamp delivered on March 18, with the help of my teammates Daniel Riojas, Lucas Pancotto and Leonardo Asad and is currently being updated.
