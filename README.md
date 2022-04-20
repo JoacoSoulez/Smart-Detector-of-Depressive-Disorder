@@ -1,4 +1,4 @@
-# Mental Health First Aid
+# Smart Detector of Depressive Disorder
 
 An Intelligent depression detector
 
@@ -8,13 +8,9 @@ An Intelligent depression detector
 In the world there are more than 280 million people diagnosed with depression. If you add them all together, it would be the fourth most populated country in the world. Today, access to quality mental health diagnosis and follow-up is taboo and difficult to access. The idea is to be able to create a therapeutic assistant that not only detects depression, but also supports the process of improvement.
 
 
-## Method and results
+## Method
 
-In order to achieve this, and following the line of several researchers, we have used a twitter database with (2345 tweets) information of people who have a tendency to suffer from this disease, and contrasted it with a selection of positive tweets extracted from a twitter database with more than 1.6 million tweets analyzed according to their sentiment (positive negative).
-Then, we also used a reddit database of posts in a subforum where people with depression write.
-
-
-On the other hand, we have made a neural network that we trained with a database (Avec2017) of transcripts of therapy sessions of diagnosed people and people without depression. I am currently working on incorporating audio.
+In order to achieve this, and following the line of several researchers,  we have made a neural network that we trained with a database (Avec2017) of transcripts of therapy sessions of diagnosed people and people without depression. I am currently working on incorporating audio.
 
 
 ## More resources
